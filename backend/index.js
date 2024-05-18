@@ -1,4 +1,4 @@
-// creating a local servier with the port number: 4000
+// creating a local server with the port number: 4000
 
 const express = require('express')
 
@@ -12,10 +12,10 @@ app.use(express.json())
 // database setup (MongoDB or dbeaver), 4/8/2024 or 4/15/2024
 
 // route for handling prisoner related features
-const prisonerRoute = require('./routes/prisonerRoute')
-const guardRoute = require('./routes/guardRoute')
-app.use('/prisoner', prisonerRoute)
-app.use('/guard', guardRoute)
+const userRoute = require('./routes/userRoute')
+const vehicleRoute = require('./routes/vehicleRoute')
+app.use('/user', userRoute)
+app.use('/vehicle', vehicleRoute)
 
 
 app.listen(port_number, () => {
