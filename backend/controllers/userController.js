@@ -1,4 +1,4 @@
-const User = require("../models/users")
+const User = require("../model/user")
 const mysqlCon = require('../mysql/mysqlCon')
 
 // Create

@@ -9,7 +9,7 @@ router.post('/create', userController.createUser)
 
 // Read
 
-router.get('/user', userController.getUsers)
+router.get('/', userController.getUsers)
 
 // Update
 
