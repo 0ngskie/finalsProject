@@ -14,6 +14,8 @@ app.use(express.json())
 // route for Rawr related features
 const userRoute = require('./routes/userRoute')
 const vehicleRoute = require('./routes/vehicleRoute')
+const employeeRoute = require('./routes/employeeRoute')
+app.use('/employee',employeeRoute)
 app.use('/user', userRoute)
 app.use('/vehicle', vehicleRoute)
 
