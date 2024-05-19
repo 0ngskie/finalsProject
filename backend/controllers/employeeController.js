@@ -23,6 +23,7 @@ module.exports.createEmployee = (req, res) => {
 
 // Read
 
+// Get all employees
 module.exports.getEmployees = (req, res) => {
     const query = `SELECT * FROM employee`;
 
@@ -35,7 +36,20 @@ module.exports.getEmployees = (req, res) => {
         }
     })
 }
+// Get all managers
+module.exports.getManagers = (req, res) =>{
+    const query = `SELECT DISTINCT e1.*
+    FROM Employee e1
+    JOIN Employee e2 ON e1.employee_id = e2.manager_id;`;
 
+    mysqlCon.query(query, (err, result) =>{
+        if(err){
+            console.error('Error fetching Managers',err);
+            return res.status(500).json({err: 'Error fetching Managers'});
+        }
+        res.status(200).json(result);
+    })
+}
 // Update
 
 module.exports.updateEmployee = (req, res) => {

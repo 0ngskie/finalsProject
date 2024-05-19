@@ -5,7 +5,7 @@ const employeeController = require('../controllers/employeeController')
 
 // Create
 
-router.post('/create', userController.createUser)
+router.post('/create', employeeController.createEmployee)
 
 // Read
 
@@ -14,10 +14,10 @@ router.get('/manager', employeeController.getManagers)
 
 // Update
 
-router.put('/update/:id', userController.updateUser)
+router.put('/update/:id', employeeController.updateEmployee)
 
 // Delete
 
-router.delete('/delete/:id', userController.deleteUser)
+router.delete('/delete/:id', employeeController.deleteEmployee)
 
 module.exports = router;
