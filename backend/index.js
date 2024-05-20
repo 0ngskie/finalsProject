@@ -15,10 +15,13 @@ app.use(express.json())
 const userRoute = require('./routes/userRoute')
 const vehicleRoute = require('./routes/vehicleRoute')
 const employeeRoute = require('./routes/employeeRoute')
+const vehicleRoute = require('./routes/vehicleRoute')
+const repairJob = require('./routes/repairjobRoute')
+
 app.use('/employee',employeeRoute)
 app.use('/user', userRoute)
 app.use('/vehicle', vehicleRoute)
-
+app.use('/repairjob', repairJobRoute)
 
 app.listen(port_number, () => {
     console.log(`server is running on http://localHost:${port_number}`)
