@@ -1,5 +1,5 @@
-const Customer = require('../controllers/Customer');
-const mysqlCon = require('../controllers/mysqlCon');
+const Customer = require('../model/customer');
+const mysqlCon = require('../mysql/mysqlCon');
 
 // Create
 

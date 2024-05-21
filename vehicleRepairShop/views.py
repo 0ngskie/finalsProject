@@ -17,3 +17,13 @@ def viewUsers(request):
         return render(request, 'finalsProject/templates/base.html', {'data' : userData})
     else:
         return render(request, 'finalsProject/templates/error_base.html', {'error': response.text})
+
+# Testing purposes for displaying every user
+def all_users(request):
+    response = requests.get('http://localHost:4000/user/')
+    if response.status_code == 200:
+        users = response.json()
+    else:
+        users = []
+    
+    return render(request, 'base.html', {'users': users})

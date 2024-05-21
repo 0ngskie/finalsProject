@@ -5,11 +5,11 @@ const repairshopController = require('../controllers/repairshopController')
 
 // Create
 
-router.post('/create',  repairshopController.createRepairShopController)
+router.post('/create',  repairshopController.createRepairShop)
 
 // Read
 
-router.get('/', repairshopController.getRepairShop)
+router.get('/', repairshopController.getRepairShops)
 
 // Update
 

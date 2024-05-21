@@ -12,15 +12,18 @@ app.use(express.json())
 // database setup (MongoDB or dbeaver), 4/8/2024 or 4/15/2024
 
 // route for Rawr related features
+const repairshopRoute = require('./routes/repairshopRoute')
 const userRoute = require('./routes/userRoute')
-const vehicleRoute = require('./routes/vehicleRoute')
+const customerRoute = require('./routes/customerRoute')
 const employeeRoute = require('./routes/employeeRoute')
 const vehicleRoute = require('./routes/vehicleRoute')
-const repairJob = require('./routes/repairjobRoute')
+const repairJobRoute = require('./routes/repairjobRoute')
 
-app.use('/employee',employeeRoute)
+app.use('/repairshop', repairshopRoute)
 app.use('/user', userRoute)
+app.use('/customer', customerRoute)
 app.use('/vehicle', vehicleRoute)
+app.use('/employee',employeeRoute)
 app.use('/repairjob', repairJobRoute)
 
 app.listen(port_number, () => {

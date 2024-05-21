@@ -1,5 +1,5 @@
 const repairJob = require('../model/repairjobs')
-const mysqlCon = require('../model/mysqlCon')
+const mysqlCon = require('../mysql/mysqlCon')
 
 // Create
 

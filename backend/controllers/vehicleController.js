@@ -54,7 +54,7 @@ module.exports.updateVehicle = (req, res) => {
 }
 
 // Delete
-module.exports.deleteRepairJob = (req, res) => {
+module.exports.deleteVehicle = (req, res) => {
     const{ vehicle_id, employee_id, shop_id, problemType, description, startDate, endDate,status } = req.body;
     const query = `DELETE FROM repairjob WHERE id = ?`;
     const values = [vehicle_id, employee_id, shop_id, problemType, description, startDate, endDate, status];
