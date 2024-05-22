@@ -16,7 +16,8 @@ module.exports.createUser = (req, res) => {
             return res.status(500).json({ error: 'Error creating user' });
         }
 
-        res.status(201).json({ "New User": { ...req.body, id: result.insertId } });
+        res.status(201).json(result);
+        
     })
 }
 
@@ -38,7 +39,7 @@ module.exports.getUsers = (req, res) => {
 module.exports.updateUser = (req, res) => {
     const { lastName, firstName, email, username, password } = req.body;
 
-    const query = `UPDATE user SET lastName = ?, firstName = ?, email = ?, username = ?, password = ?, WHERE user_id = ?`;
+    const query = `UPDATE user SET lastName = ?, firstName = ?, email = ?, username = ?, password = ? WHERE user_id = ?`;
 
     const values = [lastName, firstName, email, username, password, req.params.id];
 

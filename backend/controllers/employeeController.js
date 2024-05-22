@@ -4,12 +4,12 @@ const mysqlCon = require('../mysql/mysqlCon')
 // Create
 
 module.exports.createEmployee = (req, res) => {
-    const { employee_id, user_id, specialty, manager_id, shop_id } = req.body;
+    const { user_id, specialty, manager_id, shop_id } = req.body;
 
-    const query = `INSERT INTO employee (employee_id, user_id, specialty, manager_id, shop_id) 
+    const query = `INSERT INTO employee ( user_id, specialty, manager_id, shop_id) 
                    VALUES (?, ?, ?, ?, ?)`;
 
-    const values = [employee_id, user_id, specialty, manager_id, shop_id];
+    const values = [user_id, specialty, manager_id, shop_id];
 
     mysqlCon.query(query, values, (err, result) => {
         if (err) {
@@ -38,9 +38,7 @@ module.exports.getEmployees = (req, res) => {
 }
 // Get all managers
 module.exports.getManagers = (req, res) =>{
-    const query = `SELECT DISTINCT e1.*
-    FROM Employee e1
-    JOIN Employee e2 ON e1.employee_id = e2.manager_id;`;
+    const query = `SELECT * FROM employee WHERE specialty = 'Manager' `;
 
     mysqlCon.query(query, (err, result) =>{
         if(err){
