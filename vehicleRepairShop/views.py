@@ -8,9 +8,9 @@ mainPage = 'index.html'
 # Create your views here.
 
 #DEFAULT
-
 def testing(request):
     return render(request, mainPage)
+
 
 # Users
 def all_users(request):
