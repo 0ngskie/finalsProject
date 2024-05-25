@@ -6,9 +6,9 @@ module.exports.createUser = (req, res) => {
     const { lastName, firstName, email, username, password, userType } = req.body;
 
     const query = `INSERT INTO user (lastName, firstName, email, username, password, userType) 
-                   VALUES (?, ?, ?, ?, ?)`;
+                   VALUES (?, ?, ?, ?, ?, ?)`;
 
-    const values = [lastName, firstName, email, username, password];
+    const values = [lastName, firstName, email, username, password, userType];
 
     mysqlCon.query(query, values, (error, result) => {
         if (error) {

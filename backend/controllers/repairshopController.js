@@ -38,7 +38,7 @@ module.exports.getRepairShops = (req, res) => {
 module.exports.updateRepairShop = (req, res) => {
     const {name, address, details} = req.body;
 
-    const query = `UPDATE repairshop SET name = ?, address = ?, details = ? WHERE id = ?`;
+    const query = `UPDATE repairshop SET name = ?, address = ?, details = ? WHERE repairShop_id = ?`;
 
     const values = [name, address, details, req.params.id];
     mysqlCon.query(query, values, (error, result) => {
@@ -53,7 +53,7 @@ module.exports.updateRepairShop = (req, res) => {
 // Delete
 
 module.exports.deleteRepairShop = (req, res) => {
-    const query = `DELETE FROM repairshop WHERE id = ?`;
+    const query = `DELETE FROM repairshop WHERE repairShop_id = ?`;
 
     const values = [req.params.id];
     mysqlCon.query(query, values, (error, result) => {

@@ -6,17 +6,43 @@ const mysqlCon = require('../mysql/mysqlCon')
 module.exports.createEmployee = (req, res) => {
     const { user_id, specialty, manager_id, shop_id } = req.body;
 
-    const query = `INSERT INTO employee ( user_id, specialty, manager_id, shop_id) 
-                   VALUES (?, ?, ?, ?, ?)`;
+    // Check if the manager belongs to the same shop if a manager_id is provided
+    if (manager_id) {
+        const checkManagerQuery = `
+            SELECT * FROM employee 
+            WHERE employee_id = ? AND shop_id = ? AND specialty = 'Manager'`;
 
+        const checkValues = [manager_id, shop_id];
+
+        mysqlCon.query(checkManagerQuery, checkValues, (err, results) => {
+            if (err) {
+                console.error('Error checking manager', err);
+                return res.status(500).send('Error checking manager');
+            }
+
+            if (results.length === 0) {
+                return res.status(400).json({ error: 'Manager does not belong to the specified shop or is not a manager' });
+            }
+
+            // If the manager is valid, proceed to insert the new employee
+            insertEmployee(user_id, specialty, manager_id, shop_id, res);
+        });
+    } else {
+        // If no manager_id is provided, proceed to insert the new employee
+        insertEmployee(user_id, specialty, null, shop_id, res);
+    }
+}
+
+const insertEmployee = (user_id, specialty, manager_id, shop_id, res) => {
+    const query = `INSERT INTO employee (user_id, specialty, manager_id, shop_id) VALUES (?, ?, ?, ?)`;
     const values = [user_id, specialty, manager_id, shop_id];
 
     mysqlCon.query(query, values, (err, result) => {
         if (err) {
-            console.error('Error creating an Employee',err);
+            console.error('Error creating an Employee', err);
             res.status(500).send(err);
         } else {
-            res.status(201).json({"New Employee" : {...req.body, id: result.insertId}});
+            res.status(201).json({ "New Employee": { ...req.body, id: result.insertId } });
         }
     })
 }
@@ -65,7 +91,7 @@ module.exports.getEmployeeRepairJobs = (req, res) =>{
 }
 
 // Get all managers
-module.exports.getManagers = (req, res) =>{
+module.exports.getManagers = (req, res) =>{ 
     const query = `SELECT * FROM employee WHERE manager_id IS NULL`;
 
     mysqlCon.query(query, (err, result) =>{
