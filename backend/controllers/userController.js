@@ -3,9 +3,9 @@ const mysqlCon = require('../mysql/mysqlCon')
 
 // Create
 module.exports.createUser = (req, res) => {
-    const { lastName, firstName, email, username, password } = req.body;
+    const { lastName, firstName, email, username, password, userType } = req.body;
 
-    const query = `INSERT INTO user (lastName, firstName, email, username, password) 
+    const query = `INSERT INTO user (lastName, firstName, email, username, password, userType) 
                    VALUES (?, ?, ?, ?, ?)`;
 
     const values = [lastName, firstName, email, username, password];
@@ -39,7 +39,7 @@ module.exports.getUsers = (req, res) => {
 module.exports.updateUser = (req, res) => {
     const { lastName, firstName, email, username, password } = req.body;
 
-    const query = `UPDATE user SET lastName = ?, firstName = ?, email = ?, username = ?, password = ? WHERE user_id = ?`;
+    const query = `UPDATE user SET lastName = ?, firstName = ?, email = ?, username = ?, password = ?, userType = ? WHERE user_id = ?`;
 
     const values = [lastName, firstName, email, username, password, req.params.id];
 

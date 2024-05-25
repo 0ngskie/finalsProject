@@ -11,6 +11,9 @@ router.post('/create', employeeController.createEmployee)
 
 router.get('/', employeeController.getEmployees)
 router.get('/manager', employeeController.getManagers)
+router.get('/manager/:id/subordinates', employeeController.getSubordinates)
+router.get('/:id/shop', employeeController.getEmployeeShop)
+router.get('/:id/repairs', employeeController.getEmployeeRepairJobs)
 
 // Update
 

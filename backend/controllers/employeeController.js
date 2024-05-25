@@ -36,9 +36,37 @@ module.exports.getEmployees = (req, res) => {
         }
     })
 }
+
+//Get the Shop handled by Employee
+module.exports.getEmployeeShop = (req, res) =>{
+    const query = `SELECT sh.* FROM repairshop as sh JOIN employee as em ON sh.repairShop_id = em.shop_id WHERE em.employee_id = ?`;
+
+    mysqlCon.query(query, [req.params.id], (err, result) =>{
+        if(err){
+            console.error('Error fetching Employee Shop',err);
+            return res.status(500).json({err: 'Error fetching Employee Shop'});
+        }
+        res.status(200).json(result);
+    })
+}
+
+//Get Employee's Repair Job Schedules
+module.exports.getEmployeeRepairJobs = (req, res) =>{
+    const query = `SELECT rj.* FROM repairjob as rj JOIN employee as em ON rj.employee_id = em.employee_id WHERE em.employee_id = ?`;
+
+    mysqlCon.query(query, [req.params.id], (err, result) =>{
+        if(err){
+            console.error('Error fetching Employee Repair Jobs',err);
+            return res.status(500).json({err: 'Error fetching Employee Repair Jobs'});
+        }
+        res.status(200).json(result);
+    })
+
+}
+
 // Get all managers
 module.exports.getManagers = (req, res) =>{
-    const query = `SELECT * FROM employee WHERE specialty = 'Manager' `;
+    const query = `SELECT * FROM employee WHERE manager_id IS NULL`;
 
     mysqlCon.query(query, (err, result) =>{
         if(err){
@@ -48,6 +76,22 @@ module.exports.getManagers = (req, res) =>{
         res.status(200).json(result);
     })
 }
+
+//Get Manager's Subordinates
+module.exports.getSubordinates = (req, res) =>{
+    const query = `SELECT * FROM employee WHERE manager_id = ?`;
+    
+    mysqlCon.query(query, [req.params.id], (err, result) =>{
+        if(err){
+            console.error('Error fetching Subordinates',err);
+            return res.status(500).json({err: 'Error fetching Subordinates'});
+        }
+        res.status(200).json(result);
+    })
+    
+}
+
+
 // Update
 
 module.exports.updateEmployee = (req, res) => {
