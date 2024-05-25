@@ -25,15 +25,15 @@ module.exports.createEmployee = (req, res) => {
             }
 
             // If the manager is valid, proceed to insert the new employee
-            insertEmployee(user_id, specialty, manager_id, shop_id, res);
+            insertEmployee(user_id, specialty, manager_id, shop_id, req, res);
         });
     } else {
         // If no manager_id is provided, proceed to insert the new employee
-        insertEmployee(user_id, specialty, null, shop_id, res);
+        insertEmployee(user_id, specialty, null, shop_id, req, res);
     }
-}
+};
 
-const insertEmployee = (user_id, specialty, manager_id, shop_id, res) => {
+const insertEmployee = (user_id, specialty, manager_id, shop_id, req, res) => {
     const query = `INSERT INTO employee (user_id, specialty, manager_id, shop_id) VALUES (?, ?, ?, ?)`;
     const values = [user_id, specialty, manager_id, shop_id];
 
@@ -44,9 +44,8 @@ const insertEmployee = (user_id, specialty, manager_id, shop_id, res) => {
         } else {
             res.status(201).json({ "New Employee": { ...req.body, id: result.insertId } });
         }
-    })
-}
-
+    });
+};
 // Read
 
 // Get all employees

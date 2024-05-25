@@ -37,11 +37,11 @@ module.exports.getUsers = (req, res) => {
 
 // Update
 module.exports.updateUser = (req, res) => {
-    const { lastName, firstName, email, username, password } = req.body;
+    const { lastName, firstName, email, username, password, userType } = req.body;
 
     const query = `UPDATE user SET lastName = ?, firstName = ?, email = ?, username = ?, password = ?, userType = ? WHERE user_id = ?`;
 
-    const values = [lastName, firstName, email, username, password, req.params.id];
+    const values = [lastName, firstName, email, username, password, userType, req.params.id];
 
     mysqlCon.query(query, values, (error, result) => {
         if (error) {
