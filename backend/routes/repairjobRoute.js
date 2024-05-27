@@ -10,6 +10,7 @@ router.post('/create', repairJobController.createRepairJob)
 // Read
 
 router.get('/', repairJobController.getRepairJobs)
+router.get('/get/:user_id', repairJobController.getSpecificRepairJobs)
 
 // Update
 

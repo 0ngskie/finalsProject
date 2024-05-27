@@ -22,5 +22,3 @@ def all_users(request):
     
     return render(request, mainPage, {'users': users})
 
-def add_user(request):
-    response = requests. get()
