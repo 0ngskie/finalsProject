@@ -1,4 +1,3 @@
-{% load static%}
 <!DOCTYPE html>
 <html>
 
@@ -19,15 +18,15 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -36,7 +35,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="{% url 'home_page' %}">
+          <a class="navbar-brand" href="index.html">
             <span>
               Reliable Auto Workshop Revolution
             </span>
@@ -44,10 +43,10 @@
 
           <div class="navbar-collapse" id="">
             <div class="user_option">
-              <a href="{% url 'create_account' %}" style="margin-right: 20px;">
+              <a href="createManagerAccount.html" style="margin-right: 20px;">
                 Create Account </t>
               </a>
-              <a href="{% url 'login_page' %}">
+              <a href="logIn.html">
                 Login
               </a>
             </div>
@@ -60,9 +59,9 @@
             </div>
             <div id="myNav" class="overlay">
               <div class="overlay-content">
-                <a href="{% url 'home_page' %}">Home</a>
-                <a href="{% url 'about_us' %}">About Us</a>
-                <a href="{% url 'services_offered' %}">Services We Offer</a>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services We Offer</a>
               </div>
             </div>
           </div>
@@ -74,14 +73,14 @@
     <section class=" slider_section position-relative">
       <div class="slider_container">
         <div class="img-box">
-          <img src="{% static 'images/indexBG.png' %}" alt="">
+          <img src="images/indexBG.png" alt="">
         </div>
         <div class="detail_container">
           <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="detail-box">
-                  <img src="{% static 'images/logo.png'%}" width="230" height="210">
+                  <img src="images/logo.png" width="230" height="210">
                 </div>
               </div>
               <div class="carousel-item">
@@ -99,23 +98,23 @@
 
   <!-- about section -->
 
-  <section class="about_section layout_padding-bottom">
+  <section class="about_section">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-7 px-0">
           <div class="img-box">
-            <img src="{% static 'images/about-img.png'%}" alt="">
+            <img src="images/about-img.png" alt="">
           </div>
         </div>
         <div class="col-md-4 col-lg-3">
           <div class="detail-box">
-            <h2>
-              About Us
+            <h2 style="color: #C40C0C;">
+              <b>About Us</b>
             </h2>
             <p>
               Introducing our innovative system, designed by second-year students, to streamline car repair and management. It offers advanced diagnostics, real-time tracking, and valuable insights, ensuring efficient maintenance and extending your car's life. Experience unmatched convenience in automotive care.          
             </p>
-            <a href="{% url 'about_us' %}"> 
+            <a href="about.html"> 
               Read More
             </a>
           </div>
@@ -131,8 +130,8 @@
   <section class="us_section">
     <div class="container">
       <div class="heading_container">
-        <h2>
-          Why choose Us
+        <h2 style="color: #FF6500;">
+          <b>Why Choose Us?</b>
         </h2>
         <p>
           "Our team focuses in obtaining the comfort of our target customers"
@@ -143,47 +142,47 @@
       <div class="content_box">
         <div class="box">
           <div class="img-box">
-            <img src="{% static 'images/u-1.png'%}" alt="">
+            <img src="images/u-1.png" alt="">
           </div>
           <div class="detail-box">
             <h5>
-              I
+              Discount Savings <br> Guarantee            
             </h5>
           </div>
         </div>
         <div class="box">
           <div class="img-box">
-            <img src="{% static 'images/u-2.png'%}" alt="">
+            <img src="images/u-2.png" alt="">
           </div>
           <div class="detail-box">
             <h5>
-              Love
+              Comprehensive Vehicle <br> Services
             </h5>
           </div>
         </div>
         <div class="box">
           <div class="img-box">
-            <img src="{% static 'images/u-3.png'%}" alt="">
+            <img src="images/u-3.png" alt="">
           </div>
           <div class="detail-box">
             <h5>
-              You
+              Certified Quality <br> Assurance
             </h5>
           </div>
         </div>
         <div class="box">
           <div class="img-box">
-            <img src="{% static 'images/u-4.png'%}" alt="">
+            <img src="images/u-4.png" alt="">
           </div>
           <div class="detail-box">
             <h5>
-              Theatot 
+              Friendly Assistance <br> Available
             </h5>
           </div>
         </div>
       </div>
       <div class="btn-box">
-        <a href="{% url 'about_us' %}">
+        <a href="services.html">
           Read More
         </a>
       </div>
@@ -216,11 +215,11 @@
   </footer>
   <!-- footer section -->
 
-  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script src="{% static 'js/custom.js' %}"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
-  <script src="{% static 'js/custom.js' %}"></script>
+  <script src="js/custom.js"></script>
 
 
 </body>
