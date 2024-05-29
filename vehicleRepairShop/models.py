@@ -13,6 +13,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=100)
+    username = models.CharField(max_length=50)
     address = models.CharField(max_length=255)
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
     

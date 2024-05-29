@@ -9,3 +9,9 @@ def all_users(request):
     print(response.url)
     
     return response.json()
+
+def register_user(request):
+    
+    response = requests.post('http://localHost:4000/create')
+
+    return response.json()

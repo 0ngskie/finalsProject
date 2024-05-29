@@ -2,23 +2,35 @@ import requests
 from django.shortcuts import render
 from .models import User
 
-# define in which HTML file a certain method goes to
-mainPage = 'index.html'
-
 # Create your views here.
 
-#DEFAULT
-def testing(request):
-    return render(request, mainPage)
-
-
-# Users
-def all_users(request):
-    response = requests.get('http://localHost:4000/user/')
-    if response.status_code == 200:
-        users = response.json()
-    else:
-        users = []
+# def all_users(request):
+#     response = requests.get('http://localHost:4000/user/')
+#     if response.status_code == 200:
+#         users = response.json()
+#     else:
+#         users = []
     
-    return render(request, mainPage, {'users': users})
+#     return render(request, mainPage, {'users': users})
 
+def login_page(request):
+    return render(request, 'loginManagerAccount.html')
+
+def home_page(request):
+    return render(request, 'index.html')
+
+def about_us(request):
+    return render(request, 'about.html')
+
+def create_account(request):
+    return render(request, 'createManagerAccount.html')
+
+
+def manager_portal(request):
+    return render(request, 'managerPortal.html')
+
+def register_employee(request):
+    return render(request, 'registerEmployee.html')
+
+def services_offered(request):
+    return render(request, 'services.html')
