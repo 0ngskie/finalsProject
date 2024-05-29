@@ -10,11 +10,10 @@ class User(models.Model):
     ]
     
     first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    phone_number = models.CharField(max_length=15)
+    last_name = models.CharField(max_length=50) 
     email = models.EmailField(max_length=100)
     username = models.CharField(max_length=50)
-    address = models.CharField(max_length=255)
+    password = models.CharField(max_length=50)
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
     
     def __str__(self):

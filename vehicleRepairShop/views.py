@@ -1,6 +1,10 @@
 import requests
 from django.shortcuts import render
-from .models import User
+from .models import *
+from .forms import *
+from .request import *
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # Create your views here.
 
@@ -23,7 +27,29 @@ def about_us(request):
     return render(request, 'about.html')
 
 def create_account(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            response = register_user(first_name, last_name, email, username, password)            
+
+            if 200 <= response.status_code < 300:
+                return HttpResponseRedirect(reverse('home_page'))
+            else:
+                return render(request, 'index.html', {'message': 'User registration failed'})
+
+    else:
+
+        form = UserRegistrationForm()
+    
     return render(request, 'createManagerAccount.html')
+
 
 
 def manager_portal(request):
