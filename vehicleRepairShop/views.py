@@ -11,17 +11,46 @@ from django.urls import reverse
 # Create your views here.
 
 def login_page(request):
-
-    #TODO Verify if User is in DB then check if User is Customer or Employee. Then redirect to the appropriate pages.
-    #TODO If Employee verify if that Employee is a Manager or not.
+    # TODO: Verify if User is in DB then check if User is Customer or Employee. Then redirect to the appropriate pages.
+    # TODO: If Employee verify if that Employee is a Manager or not.
 
     if request.method == 'POST':
-
         form = UserLoginForm(request.POST)
-
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
+
+            response = login_user(username, password)
+
+            if isinstance(response, JsonResponse):
+                if response.status_code == 400:                
+                    messages.error(request, 'Login failed. Please try again.')
+                else:
+                    messages.error(request, 'Unalbe to Login. Please try again later.')
+                return render(request, 'login.html')
+
+            try:
+                response_data = response.json()
+                print(response_data)
+                # response_data is the Data of the User that Logged in. Do what you will with that information
+
+                if 200 <= response.status_code < 300:
+                    messages.success(request, 'Login Successful')
+                    return render(request, 'login.html')
+                else:
+                    messages.error(request, 'Login failed. Please try again.')
+                    return render(request, 'login.html')
+
+            except ValueError:
+                messages.error(request, 'Invalid response from server.')
+                return render(request, 'login.html')
+
+        else:
+            messages.error(request, 'Fields cannot be empty.')
+            return render(request, 'login.html')
+    
+    else:
+        form = UserLoginForm()
 
     return render(request, 'login.html')
 
@@ -44,10 +73,6 @@ def create_account(request):
 
             response = register_user(first_name, last_name, email, username, password)            
 
-            #TODO Add a Check for Email and Username if it already exists in the DB
-
-            print(response.status_code)
-
             if 200 <= response.status_code < 300:
                 messages.success(request, 'Registration successful. Proceed to Login Page.')
                 return render(request, 'createManagerAccount.html')
@@ -59,7 +84,7 @@ def create_account(request):
                 return render(request, 'createManagerAccount.html')
         
         else:
-            messages.error(request, 'Registration failed. Fields cannot be empty.')
+            messages.error(request, 'Fields cannot be empty.')
             return render(request, 'createManagerAccount.html')
 
     else:

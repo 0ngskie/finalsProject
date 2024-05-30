@@ -35,6 +35,28 @@ module.exports.getUsers = (req, res) => {
     })
 }
 
+
+module.exports.getUser = (req, res) => {
+    const { username, password } = req.body;
+
+    const query = 'SELECT * FROM user WHERE username = ? AND password = ?'
+
+    const values = [username, password];
+
+    mysqlCon.query(query, values, (error, result) => {
+        if (error) {
+            console.error('Error fetching user:', error);
+            return res.status(500).json({ error: 'Error fetching user' });
+        }
+        
+        if (result.length > 0) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json({ error: 'User not found' });
+        }
+    })
+}
+
 // Update
 module.exports.updateUser = (req, res) => {
     const { lastName, firstName, email, username, password, userType } = req.body;

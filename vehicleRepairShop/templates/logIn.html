@@ -16,13 +16,15 @@
   <title>R.A.W.R - Log-in</title>
 
   <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
 
   <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap"
+    rel="stylesheet">
 
   <!-- Custom styles for this template -->
   <link href="{% static 'css/style.css'%}" rel="stylesheet" />
@@ -74,58 +76,66 @@
   <section class="contact_section layout_padding">
     <div class="container">
       <div class="heading_container">
-        <h2>
-          Log-in to your Account
-        </h2>
+        <h2>Log-in to your Account</h2>
       </div>
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="form_container">
-            <form method="POST" action ="{% url 'login_page'%}">
+            <form method="POST" action="{% url 'login_page' %}">
+
+              
+              {% if messages %}
+              <ul class="messages" style="text-align: center; list-style-type: none;">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+              </ul>
+              {% endif %}
+
               {% csrf_token %}
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="inputName4" placeholder="Username">
+                  <input type="text" class="form-control" id="inputName4" placeholder="Username" name="username">
                 </div>
-                
                 <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="inputSubject4" placeholder="Password">
+                  <input type="password" class="form-control" id="inputSubject4" placeholder="Password" name="password">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col">
-              <div class="d-flex justify-content-center">
-                <button type="submit" class="">Log-in</button>
-              </div>
-                  </form>
+                  <div class="d-flex justify-content-center">
+                    <button type="submit" class="">Log-in</button>
+                  </div>
+            </form>
+
           </div>
         </div>
         <div class="contact_items">
-        <a>
-          <div class="img-box">
-            <img src="{% static 'images/location.png'%}" alt="">
-          </div>
-          <h6>
-           103 Esteban St. Legaspi Village, Makati City
-          </h6>
-        </a>
-        <a>
-          <div class="img-box">
-            <img src="{% static 'images/call.png'%}" alt="">
-          </div>
-          <h6>
-            (+63 912 345 6789)
-          </h6>
-        </a>
-        <a>
-          <div class="img-box">
-            <img src="{% static 'images/mail.png'%}" alt="">
-          </div>
-          <h6>
-            okenterprise@gmail.com
-          </h6>
-        </a>
-      </div>
+          <a>
+            <div class="img-box">
+              <img src="{% static 'images/location.png'%}" alt="">
+            </div>
+            <h6>
+              103 Esteban St. Legaspi Village, Makati City
+            </h6>
+          </a>
+          <a>
+            <div class="img-box">
+              <img src="{% static 'images/call.png'%}" alt="">
+            </div>
+            <h6>
+              (+63 912 345 6789)
+            </h6>
+          </a>
+          <a>
+            <div class="img-box">
+              <img src="{% static 'images/mail.png'%}" alt="">
+            </div>
+            <h6>
+              okenterprise@gmail.com
+            </h6>
+          </a>
+        </div>
       </div>
     </div>
   </section>

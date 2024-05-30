@@ -11,6 +11,9 @@ router.post('/create', userController.createUser)
 
 router.get('/', userController.getUsers)
 
+// Get Specific User
+router.get('/user', userController.getUser)
+
 // Update
 
 router.put('/update/:id', userController.updateUser)
