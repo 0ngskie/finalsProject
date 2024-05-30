@@ -7,7 +7,6 @@ function openNav() {
 
 function registerManager() {
     alert('Registered Account Successfully!');
-    window.location.href = 'index.html';
 }
 
 function registerEmployee() {

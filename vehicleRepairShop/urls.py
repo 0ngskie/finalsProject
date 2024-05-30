@@ -22,6 +22,7 @@ urlpatterns = [
     path('about/', about_us, name = 'about_us'),
     path('register/', create_account, name = 'create_account'),
     path('manager_portal/', manager_portal, name = 'manager_portal'),
+    path('employee_portal/', employee_portal, name = 'employee_portal'),
     path('register_employee/', register_employee, name = 'register_employee'),
     path('services/', services_offered, name = 'services_offered'),
     path('login/', login_page, name = 'login_page')

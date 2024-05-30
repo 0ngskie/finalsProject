@@ -24,9 +24,15 @@ def register_user(first_name, last_name, email, username, password):
         'userType': 'Customer'
     }
 
-    response = requests.post(url, json=payload)
+    try:
+        response = requests.post(url, json=payload)
+        response.raise_for_status()
+    except ConnectionError:
+        return None
+    except requests.exceptions.RequestException as e:
+        return JsonResponse({'error': str(e)}, status=400)
 
     if response.status_code == 201:
         return JsonResponse({'message': 'User registered successfully'}, status=201)
     else:
-        return JsonResponse({'error': 'Failed to register user'}, status=400)
+        return JsonResponse({'error': 'Failed to register user'}, status=response.status_code)
