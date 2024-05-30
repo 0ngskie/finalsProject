@@ -63,17 +63,17 @@ def create_account(request):
 
             response = register_user(first_name, last_name, email, username, password)            
 
-            #TODO Add Error Handling for when the API is offline when user tries to regiter.
+            #TODO Add Error Handling for when the API is offline when user tries to regiter. /
             #TODO Add a Check for Email and Username if it already exists in the DB
-            #TODO User cannot leave any fields empty
+            #TODO User cannot leave any fields empty /
 
             if 200 <= response.status_code < 300:
-                messages.success(request, 'Registration successful.')
+                messages.success(request, 'Registration successful. Proceed to Login Page.')
             else:
-                messages.error(request, 'Registration failed.')
+                messages.error(request, 'Registration failed. Please try again.')
         
         else:
-            messages.error(request, 'Fields cannot be empty.')
+            messages.error(request, 'Registration failed. Fields cannot be empty.')
 
     else:
 
@@ -84,6 +84,9 @@ def create_account(request):
 
 def manager_portal(request):
     return render(request, 'managerPortal.html')
+
+def employee_portal(request):
+    return render(request, 'employeePortal.html')
 
 def register_employee(request):
     return render(request, 'registerEmployee.html')

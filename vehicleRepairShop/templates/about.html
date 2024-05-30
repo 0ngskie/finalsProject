@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html>
 
@@ -18,15 +19,15 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="{% static 'css/style.css'%}" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="{% static 'css/responsive.css'%}" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
@@ -35,7 +36,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="{% url 'home_page'%}">
             <span>
               Reliable Auto Workshop Revolution
             </span>
@@ -56,9 +57,9 @@
             </div>
             <div id="myNav" class="overlay">
               <div class="overlay-content">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="services.html">Services We Offer</a>
+                <a href="{% url 'home_page'%}">Home</a>
+                <a href="{% url 'about_us'%}">About Us</a>
+                <a href="{% url 'services_offered'%}">Services We Offer</a>
               </div>
             </div>
           </div>
@@ -75,7 +76,7 @@
       <div class="row">
         <div class="col-md-7 px-0">
           <div class="img-box">
-            <img src="images/about-img.png" alt="">
+            <img src="{% static 'images/about-img.png'%}" alt="">
           </div>
         </div>
         <div class="col-md-4 col-lg-3">
@@ -144,7 +145,7 @@
                     </h6>
                   </div>
                   <div class="img-box">
-                    <img src="images/1.png" alt="">
+                    <img src="{% static 'images/1.png'%}" alt="">
                   </div>
                   <div class="detail-box">
                     <h5 style="color: #FF6500;">
@@ -164,7 +165,7 @@
                     </h6>
                   </div>
                   <div class="img-box">
-                    <img src="images/2.jpg" alt="">
+                    <img src="{% static 'images/2.jpg'%}" alt="">
                   </div>
                   <div class="detail-box">
                     <h5 style="color: #C40C0C">
@@ -183,7 +184,7 @@
                     </h6>
                   </div>
                   <div class="img-box">
-                    <img src="images/3.png" alt="">
+                    <img src="{% static 'images/3.png'%}" alt="">
                   </div>
                   <div class="detail-box">
                     <h5 style="color: #FF8A08">
@@ -202,7 +203,7 @@
                     </h6>
                   </div>
                   <div class="img-box">
-                    <img src="images/6.png" alt="">
+                    <img src="{% static 'images/6.png'%}" alt="">
                   </div>
                   <div class="detail-box">
                     <h5 style="color: #C40C0C;">
@@ -221,7 +222,7 @@
                     </h6>
                   </div>
                   <div class="img-box">
-                    <img src="images/5.png" alt="">
+                    <img src="{% static 'images/5.png'%}" alt="">
                   </div>
                   <div class="detail-box">
                     <h5 style="color: #FF6500">
@@ -240,7 +241,7 @@
                     </h6>
                   </div>
                   <div class="img-box">
-                    <img src="images/4.jpg" alt="">
+                    <img src="{% static 'images/4.jpg'%}" alt="">
                   </div>
                   <div class="detail-box">
                     <h5 style="color: #FF8A08">
@@ -262,17 +263,16 @@
   <!-- footer section -->
   <footer class="container-fluid footer_section">
     <p>
-      Copyright &copy; 2020 All Rights Reserved. Design by
-      <a href="https://html.design/">Free Html Templates</a>
+      Copyright &copy; 2024 All Rights Reserved.
     </p>
   </footer>
   <!-- footer section -->
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
+  <script src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.js'%}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
-  <script src="js/custom.js"></script>
+  <script src="{% static 'js/custom.js'%}"></script>
 
 </body>
 

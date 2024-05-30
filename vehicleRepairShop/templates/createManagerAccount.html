@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html>
 
@@ -18,15 +19,15 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,600,700&display=swap" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="{% static 'css/style.css'%}" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+  <link href="{% static 'css/responsive.css'%}" rel="stylesheet" />
 </head>
 
 <body class="sub_page">
@@ -35,7 +36,7 @@
     <header class="header_section">
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="{% url 'home_page'%}">
             <span>
               Reliable Auto Workshop Revolution
             </span>
@@ -43,7 +44,7 @@
 
           <div class="navbar-collapse" id="">
             <div class="user_option">
-              <a href="logIn.html">
+              <a href="{% url 'login_page'%}">
                 Login
               </a>
             </div>
@@ -56,9 +57,9 @@
             </div>
             <div id="myNav" class="overlay">
               <div class="overlay-content">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="services.html">Services We Offer</a>
+                <a href="{% url 'home_page'%}">Home</a>
+                <a href="{% url 'about_us'%}">About Us</a>
+                <a href="{% url 'services_offered'%}">Services We Offer</a>
               </div>
             </div>
           </div>
@@ -69,7 +70,6 @@
   </div>
 
   <!-- contact section -->
-
   <section class="contact_section layout_padding">
     <div class="container">
       <div class="heading_container">
@@ -77,42 +77,53 @@
           Create an Account
         </h2>
       </div>
+
+      {% if messages %}
+      <ul class="messages" style="text-align: center; list-style-type: none;">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="form_container">
-            <form>
+            <form method="POST" action="{% url 'create_account' %}">
+              {% csrf_token %}
               <div class="form-row">
-                <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="inputName4" placeholder="First Name ">
-                </div>
-                <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="inputSubject4" placeholder="Last Name">
-                </div>
+                  <div class="form-group col-md-6">
+                      <input type="text" class="form-control" id="inputName4" placeholder="First Name" name="first_name">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <input type="text" class="form-control" id="inputSubject4" placeholder="Last Name" name="last_name">
+                  </div>
               </div>
               <div class="form-row">
-                <div class="form-group col">
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                </div>
+                  <div class="form-group col">
+                      <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email">
+                  </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="inputName4" placeholder="Username">
-                </div>
-                <div class="form-group col-md-6">
-                  <input type="text" class="form-control" id="inputSubject4" placeholder="Password">
-                </div>
+                  <div class="form-group col-md-6">
+                      <input type="text" class="form-control" id="inputName4" placeholder="Username" name="username">
+                  </div>
+                  <div class="form-group col-md-6">
+                      <input type="password" class="form-control" id="inputSubject4" placeholder="Password" name="password">
+                  </div>
               </div>
               <div class="d-flex justify-content-center">
-                <button type="button" class="" onclick="registerManager()">Register</button>              
+                  <button type="submit" class="">Register</button>
               </div>
-            </form>
+          </form>
+          
           </div>
         </div>
       </div>
       <div class="contact_items">
         <a>
           <div class="img-box">
-            <img src="images/location.png" alt="">
+            <img src="{% static 'images/location.png'%}" alt="">
           </div>
           <h6>
            103 Esteban St. Legaspi Village, Makati City
@@ -120,7 +131,7 @@
         </a>
         <a>
           <div class="img-box">
-            <img src="images/call.png" alt="">
+            <img src="{% static 'images/call.png'%}" alt="">
           </div>
           <h6>
             (+63 912 345 6789)
@@ -128,7 +139,7 @@
         </a>
         <a>
           <div class="img-box">
-            <img src="images/mail.png" alt="">
+            <img src="{% static 'images/mail.png'%}" alt="">
           </div>
           <h6>
             okenterprise@gmail.com
@@ -143,17 +154,16 @@
   <!-- footer section -->
   <footer class="container-fluid footer_section">
     <p>
-      Copyright &copy; 2020 All Rights Reserved. Design by
-      <a href="https://html.design/">Free Html Templates</a>
+      Copyright &copy; 2024 All Rights Reserved.
     </p>
   </footer>
   <!-- footer section -->
 
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.js"></script>
+  <script src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
+  <script src="{% static 'js/bootstrap.js'%}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
-  <script src="js/custom.js"></script>
+  <script src="{% static 'js/custom.js'%}"></script>
 
 </body>
 
