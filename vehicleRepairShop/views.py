@@ -1,6 +1,7 @@
 import requests
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, loginManagerAccount
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from .forms import *
@@ -24,7 +25,7 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            loginManagerAccount(request, user)
+            login(request, user)
             
             try:
                 # Assuming the User model is related to Employee model via a one-to-one or foreign key relationship
@@ -41,7 +42,7 @@ def login_page(request):
         else:
             return HttpResponse('Invalid login credentials.')
     else:
-        return render(request, 'loginManagerAccount.html')
+        return render(request, 'login.html')
 
 def home_page(request):
     return render(request, 'index.html')
@@ -62,10 +63,17 @@ def create_account(request):
 
             response = register_user(first_name, last_name, email, username, password)            
 
+            #TODO Add Error Handling for when the API is offline when user tries to regiter.
+            #TODO Add a Check for Email and Username if it already exists in the DB
+            #TODO User cannot leave any fields empty
+
             if 200 <= response.status_code < 300:
-                return HttpResponseRedirect(reverse('home_page'))
+                messages.success(request, 'Registration successful.')
             else:
-                return render(request, 'index.html', {'message': 'User registration failed'})
+                messages.error(request, 'Registration failed.')
+        
+        else:
+            messages.error(request, 'Fields cannot be empty.')
 
     else:
 

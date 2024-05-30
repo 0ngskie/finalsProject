@@ -3,6 +3,7 @@ body {
  sans-serif;
   color: #0c0c0c;
   background-color: #ffffff;
+  overflow-x: hidden;
 }
 
 .layout_padding {
