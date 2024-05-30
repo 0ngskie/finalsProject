@@ -81,8 +81,8 @@
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="form_container">
-            <form>
-
+            <form method="POST" action ="{% url 'login_page'%}">
+              {% csrf_token %}
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <input type="text" class="form-control" id="inputName4" placeholder="Username">
@@ -95,7 +95,7 @@
               <div class="form-row">
                 <div class="form-group col">
               <div class="d-flex justify-content-center">
-                <button type="button" class="" onclick="logIn()">Log-in</button>
+                <button type="submit" class="">Log-in</button>
               </div>
                   </form>
           </div>
