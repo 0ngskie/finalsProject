@@ -95,7 +95,30 @@ def create_account(request):
 
 
 def manager_portal(request):
-    return render(request, 'managerPortal.html')
+    user = request.user
+
+    # Assuming the User model has a related Employee model with a OneToOne relationship
+    # Update this according to your actual models
+    try:
+        employee = user.employee
+    except User.employee.RelatedObjectDoesNotExist:
+        # Handle the case where the user is not an employee
+        return redirect('some_error_page')
+
+    if employee.specialty == 'Manager' and employee.manager_id is None:
+        # The user is a manager
+        subordinates_url = f'http://localhost:4000/employee/{employee.id}/subordinates'
+        response = requests.get(subordinates_url)
+
+        if response.status_code == 200:
+            subordinates = response.json()
+            return render(request, 'managerPortal.html', {'subordinates': subordinates})
+        else:
+            # Handle error from the Node.js API
+            return render(request, 'managerPortal.html', {'error': 'Error fetching subordinates'})
+    else:
+        # The user is not a manager
+        return redirect('employee_portal')
 
 def employee_portal(request):
     return render(request, 'employeePortal.html')
