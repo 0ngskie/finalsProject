@@ -73,7 +73,8 @@ def create_account(request):
     
     return render(request, 'createManagerAccount.html')
 
-
+def employee_portal (request):
+    return render(request, 'employeePortal.html')
 def manager_portal(request):
     return render(request, 'managerPortal.html')
 
