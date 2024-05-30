@@ -103,17 +103,23 @@ module.exports.getManagers = (req, res) =>{
 }
 
 //Get Manager's Subordinates
-module.exports.getSubordinates = (req, res) =>{
-    const query = `SELECT * FROM employee WHERE manager_id = ?`;
+module.exports.getSubordinates = (req, res) => {
+    const query = `
+        SELECT e.employee_id, u.firstName, u.lastName, u.email, u.username, e.specialty, s.date, s.startTime, s.endTime, rj.status 
+        FROM employee e
+        JOIN user u ON e.user_id = u.user_id
+        LEFT JOIN schedule s ON e.employee_id = s.employee_id
+        LEFT JOIN repairjob rj ON s.repairJob_id = rj.repairJob_id
+        WHERE e.manager_id = ?
+    `;
     
-    mysqlCon.query(query, [req.params.id], (err, result) =>{
-        if(err){
-            console.error('Error fetching Subordinates',err);
-            return res.status(500).json({err: 'Error fetching Subordinates'});
+    mysqlCon.query(query, [req.params.id], (err, result) => {
+        if (err) {
+            console.error('Error fetching Subordinates', err);
+            return res.status(500).json({ err: 'Error fetching Subordinates' });
         }
         res.status(200).json(result);
     })
-    
 }
 
 
