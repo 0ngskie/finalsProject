@@ -1,23 +1,37 @@
 const User = require("../model/user")
 const mysqlCon = require('../mysql/mysqlCon')
 
-// Create
 module.exports.createUser = (req, res) => {
     const { lastName, firstName, email, username, password, userType } = req.body;
 
-    const query = `INSERT INTO user (lastName, firstName, email, username, password, userType) 
-                   VALUES (?, ?, ?, ?, ?, ?)`;
+    // Check if email or username already exists
+    const checkQuery = `SELECT * FROM user WHERE email = ? OR username = ?`;
+    const checkValues = [email, username];
 
-    const values = [lastName, firstName, email, username, password, userType];
-
-    mysqlCon.query(query, values, (error, result) => {
-        if (error) {
-            console.error('Error creating user:', error);
-            return res.status(500).json({ error: 'Error creating user' });
+    mysqlCon.query(checkQuery, checkValues, (checkError, checkResult) => {
+        if (checkError) {
+            console.error('Error checking user:', checkError);
+            return res.status(500).json({ error: 'Error checking user' });
         }
 
-        res.status(201).json(result);
-        
+        if (checkResult.length > 0) {
+            // Either email or username already exists
+            return res.status(400).json({ error: 'Email or Username already exists' });
+        } else {
+            // Proceed with creating the user
+            const insertQuery = `INSERT INTO user (lastName, firstName, email, username, password, userType) 
+                                 VALUES (?, ?, ?, ?, ?, ?)`;
+            const insertValues = [lastName, firstName, email, username, password, userType];
+
+            mysqlCon.query(insertQuery, insertValues, (insertError, insertResult) => {
+                if (insertError) {
+                    console.error('Error creating user:', insertError);
+                    return res.status(500).json({ error: 'Error creating user' });
+                }
+
+                res.status(201).json(insertResult);
+            })
+        }
     })
 }
 
