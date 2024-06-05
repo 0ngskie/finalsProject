@@ -4,7 +4,7 @@
 
 <br>
 
-<b>💻 Website Content </b> <br>
+### 💻 Website Content <br>
 <ul>
   <li><strong>Create an Account:</strong> Simple registration for new users.</li>
   <li><strong>Login:</strong> Easy access for existing users.</li>
@@ -18,7 +18,7 @@
   <li><strong>Reminders:</strong> Receive appointment reminders and updates.</li>
 </ul>
 
-<b>🐍 Programming Languages </b> <br>
+### 🐍 Programming Languages <br>
 <ul>
   <li>Python</li>
   <li>HTML</li>
@@ -27,16 +27,16 @@
   <li>JavaScript</li>
 </ul>
 
-<b>🌐 Integrated Development Environment</b> <br>
+### 🌐 Integrated Development Environment <br>
 <ul>
   <li>Visual Studio Code</li>
 </ul>
 
-<h3>👥 Team Members</h3>
+### 👥 Team Members
 <i>Back-end Developers</i> <br>
 Philippe Dwaine Estacio, John Benedict Ong, Ethan Araneta, and Leamei Quiñanola <br> <br>
 
 <i>Front-end Developers</i> <br>
-Althea Irish Manalo & Ralph Benedict Vicente
+Althea Irish Manalo & Ralph Benedict Vicente <br><br>
 
 © 2024 - R.A.W.R - OK ENTERPRISE
